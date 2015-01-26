@@ -2,11 +2,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    clean: {
+      build: {
+        src: ['build/**/*']
+      }
+    },
+
     connect: {
       server: {
         options: {
           livereload: true,
-          base: 'build'
+          base: 'build',
+          open: {
+            appName: 'Google Chrome'
+          }
         }
       }
     },
@@ -78,6 +87,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -85,5 +95,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['less:development', 'copy', 'connect', 'watch']);
-  grunt.registerTask('build', ['less:production', 'imagemin', 'copy']);
+  grunt.registerTask('build', ['clean', 'less:production', 'imagemin', 'copy']);
 };
