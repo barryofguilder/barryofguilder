@@ -1,5 +1,97 @@
-{{page-title "Barryofguilder"}}
+{{page-title "barryofguilder"}}
 
-<h2 id="title">Welcome to Ember</h2>
+<main class="pt-12 text-lime-900 sm:flex sm:justify-center">
+  <div class="sm:px-12 sm:max-w-3xl">
+    <Card @variant="primary" class="mt-12 sm:mt-6">
+      <div
+        class="relative mt-[-80px] flex justify-center sm:justify-end sm:mt-[-70px] sm:mr-[-60px]"
+      >
+        <img
+          src="images/profile.jpg"
+          alt="barryofguilder avatar"
+          class="rounded-full border-2 border-lime-900 w-24 h-24"
+        />
+      </div>
+      <div class="mt-4 sm:mt-[-40px]">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-lime-900">
+          My name is Jason Barry
+        </h1>
+        <p class="mt-6 text-xl sm:text-2xl leading-relaxed">
+          I'm a software engineer and web developer located in the north Georgia. I have over 15
+          years of professional experience and have been building websites since the late 90s. My
+          framework of choice is
+          <Link @variant="primary" href="https://emberjs.com">Ember.js</Link>.
+        </p>
+      </div>
+    </Card>
+
+    <h2
+      class="mt-14 mb-8 sm:mt-20 sm:mb-10 uppercase font-bold text-4xl sm:text-5xl tracking-wider text-center underline underline-offset-4 decoration-lime-600 decoration-dotted"
+    >
+      Fun Projects
+    </h2>
+
+    <div class="text-lg">
+      <Card @variant="alt" class="sm:max-w-lg">
+        <h3 class="font-semibold text-2xl">
+          Tic Tac Toe
+        </h3>
+        <p class="mt-2">
+          I created this because I wanted to play around with Ember Octane. My 8 year old daughter
+          helped me choose the colors and emoji and we had a blast building it.
+        </p>
+        <p class="mt-2">
+          <Link @variant="alt" href="https://github.com/barryofguilder/tic-tac-toe">
+            GitHub</Link>
+          <span class="text-lg">|</span>
+          <Link @variant="alt" href="https://barryofguilder.com/ttt/">
+            Demo</Link>
+        </p>
+      </Card>
+
+      <Card @variant="alt" class="mt-8 ml-auto sm:max-w-lg">
+        <h3 class="font-semibold text-2xl">
+          Pig Game Calculator
+        </h3>
+        <p class="mt-2">
+          There's a dice game we started playing called
+          <Link
+            href="https://en.wikipedia.org/wiki/Pig_(dice_game)"
+            @variant="alt"
+            @relaxed={{true}}
+          >Pig</Link>. I was tired of keeping track of score on paper, so I built this Calculator.
+        </p>
+        <p class="mt-2">
+          <Link @variant="alt" href="https://github.com/barryofguilder/pig-game">
+            GitHub</Link>
+          <span class="text-lg">|</span>
+          <Link @variant="alt" href="https://barryofguilder.com/pig-game/">
+            Demo</Link>
+        </p>
+      </Card>
+
+      <Card @variant="alt" class="mt-8 sm:max-w-lg">
+        <h3 class="font-semibold text-2xl">
+          Memory Game
+        </h3>
+        <p class="mt-2">
+          A simple memory game where you flip two cards and try to get a match.
+        </p>
+        <p class="mt-2">
+          <Link @variant="alt" href="https://github.com/barryofguilder/memory-game">
+            GitHub</Link>
+        </p>
+      </Card>
+    </div>
+
+    <footer
+      class="mt-20 py-4 sm:py-6 flex justify-center gap-x-4 border-t-4 border-dotted border-lime-600"
+    >
+      <SocialLink @variant="twitter" href="https://twitter.com/barryofguilder" />
+      <SocialLink @variant="github" href="https://twitter.com/barryofguilder" />
+      <SocialLink @variant="linkedin" href="https://twitter.com/barryofguilder" />
+    </footer>
+  </div>
+</main>
 
 {{outlet}}

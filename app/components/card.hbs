@@ -1,0 +1,15 @@
+<div
+  class="relative p-4 border-y-2 sm:rounded-xl sm:border-2
+    {{if
+      (eq @variant 'primary')
+      'pb-14 sm:px-8 sm:pt-10 sm:pb-12 bg-white shadow-inner-chunky shadow-lime-600 border-lime-900 selection:bg-lime-200'
+    }}
+    {{if
+      (eq @variant 'alt')
+      'pb-8 bg-cyan-100 shadow-inner-chunky shadow-cyan-600 border-cyan-900 selection:bg-cyan-200'
+    }}
+    "
+  ...attributes
+>
+  {{yield}}
+</div>

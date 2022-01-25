@@ -1,0 +1,15 @@
+<a
+  href="#"
+  class="underline decoration-2 underline-offset-4
+    {{if @relaxed '' 'font-semibold'}}
+    {{if
+      (eq @variant 'primary')
+      'text-lime-900 decoration-lime-900 hover:bg-lime-200 focus:outline-none focus:bg-lime-200'
+    }}
+    {{if
+      (eq @variant 'alt')
+      'text-cyan-900 decoration-cyan-900 hover:bg-cyan-200 focus:outline-none focus:bg-cyan-200'
+    }}
+    "
+  ...attributes
+>{{yield}}</a>
