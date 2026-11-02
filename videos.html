@@ -16,8 +16,8 @@
   <div id="videos"></div>
   <script>
     const VIDEOS = [
-      { title: 'Video 1', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7074_2.MOV' },
-      { title: 'Video 2', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7075.MOV' },
+      { title: 'J Video', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7074_2.MOV' },
+      { title: 'K Video', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7075.MOV' },
     ];
     const container = document.getElementById('videos');
 
@@ -66,6 +66,9 @@
         }
         try {
           await navigator.share({ files: [file] });
+          // Resolves once they pick an option in the share sheet; canceling rejects instead.
+          button.textContent = 'Saved ✓';
+          status.textContent = 'Check your Photos app. Tap again to save another copy.';
         } catch {}
       });
     });
