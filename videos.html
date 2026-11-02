@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Save Videos</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 30rem; margin: 3rem auto; padding: 0 1rem; text-align: center; font-size: 1.25rem; }
+    section { margin-bottom: 2.5rem; }
+    button { font-size: 1.5rem; padding: 1rem 2rem; width: 100%; border: 0; border-radius: 0.75rem; background: #007aff; color: #fff; }
+    button:disabled { background: #8e8e93; }
+  </style>
+</head>
+<body>
+  <h1>Save the videos</h1>
+  <div id="videos"></div>
+  <script>
+    const VIDEOS = [
+      { title: 'Video 1', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7074_2.MOV' },
+      { title: 'Video 2', url: 'https://d1ok71h8raeel3.cloudfront.net/IMG_7075.MOV' },
+    ];
+    const container = document.getElementById('videos');
+
+    VIDEOS.forEach((video) => {
+      const section = document.createElement('section');
+      const heading = document.createElement('h2');
+      const button = document.createElement('button');
+      const status = document.createElement('p');
+      const fileName = video.url.split('/').pop();
+      let file;
+
+      heading.textContent = video.title;
+      button.textContent = 'Get video';
+      status.setAttribute('role', 'status');
+      section.append(heading, button, status);
+      container.append(section);
+
+      // Videos are large, so each one only downloads when its button is tapped.
+      // iOS needs a second tap to open the share sheet once the download is done.
+      button.addEventListener('click', async () => {
+        if (!file) {
+          button.disabled = true;
+          button.textContent = 'Getting video ready…';
+          status.textContent = 'This can take a few minutes.';
+          try {
+            const response = await fetch(video.url);
+            if (!response.ok) {
+              throw new Error();
+            }
+            const blob = await response.blob();
+            file = new File([blob], fileName, { type: 'video/mp4' });
+            button.disabled = false;
+            button.textContent = 'Save to Photos';
+            status.textContent = 'Tap the button, then choose "Save Video".';
+          } catch {
+            button.disabled = false;
+            button.textContent = 'Try again';
+            status.textContent = 'The video could not load. Please try again.';
+          }
+          return;
+        }
+
+        if (!navigator.canShare?.({ files: [file] })) {
+          location.href = video.url;
+          return;
+        }
+        try {
+          await navigator.share({ files: [file] });
+        } catch {}
+      });
+    });
+  </script>
+</body>
+</html>
