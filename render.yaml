@@ -1,0 +1,62 @@
+# Render Blueprint for barryofguilder.com.
+#
+# Each game is its own Render static site, reached through a folder on this
+# domain. These rules forward /<game> and /<game>/* to that site, with the
+# folder removed. Each game's build must target its folder (for example,
+# Headband's ROOT_URL is /headband/).
+#
+# To add a game, add its two rules ABOVE the catch-all "/" rule at the end.
+#
+# Custom domains (barryofguilder.com and www) are left out on purpose. Render
+# keeps settings this file doesn't mention, so they stay as they are.
+services:
+  - type: web
+    runtime: static
+    name: barryofguilder
+    branch: master
+    autoDeployTrigger: commit
+    # Plain HTML and CSS, so there's nothing to build.
+    buildCommand: ""
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /pig-game
+        destination: https://pig-game-uvap.onrender.com/
+      - type: rewrite
+        source: /pig-game/*
+        destination: https://pig-game-uvap.onrender.com/*
+
+      - type: rewrite
+        source: /memory-game
+        destination: https://memory-game-ekdm.onrender.com/
+      - type: rewrite
+        source: /memory-game/*
+        destination: https://memory-game-ekdm.onrender.com/*
+
+      - type: rewrite
+        source: /tic-tac-toe
+        destination: https://tic-tac-toe-024o.onrender.com/
+      - type: rewrite
+        source: /tic-tac-toe/*
+        destination: https://tic-tac-toe-024o.onrender.com/*
+
+      - type: rewrite
+        source: /reverse-audio
+        destination: https://reverse-audio-qcqn.onrender.com/
+      - type: rewrite
+        source: /reverse-audio/*
+        destination: https://reverse-audio-qcqn.onrender.com/*
+
+      - type: rewrite
+        source: /headband
+        destination: https://headband-mqcf.onrender.com/
+      - type: rewrite
+        source: /headband/*
+        destination: https://headband-mqcf.onrender.com/*
+
+      # Keep last. Copied from the dashboard as-is. "/" is this site's own
+      # index.html, and Render skips rules for paths that exist, so this
+      # probably never applies.
+      - type: rewrite
+        source: /
+        destination: https://barryofguilder.onrender.com
